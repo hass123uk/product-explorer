@@ -1,6 +1,10 @@
 
 ## Running/Testing the code
 
+### `yarn install`
+
+Installs the NPM dependencies
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
