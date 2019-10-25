@@ -1,0 +1,558 @@
+{
+	"info": {
+		"_postman_id": "0879974b-11f3-42ad-b1ed-54d388d320f5",
+		"name": "OData V2 (read/write)",
+		"description": "A simple OData v2 service optimized for quick browser demos.\n\nLinks:\n- https://www.odata.org/odata-services/\n- https://services.odata.org/V2/(S(p4mjfm1rv0ea0i3iomct0gnd))/OData/OData.svc/$metadata",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get Products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/Products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products show ID, Name, Price and Category Name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/Products?$expand=Category&$select=ID, Name, Price, Category/Name",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products"
+							],
+							"query": [
+								{
+									"key": "$expand",
+									"value": "Category"
+								},
+								{
+									"key": "$select",
+									"value": "ID, Name, Price, Category/Name"
+								}
+							]
+						},
+						"description": "OData V2 does not support $expand with nested filter so instead solve the problem by using a general $select"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products Count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/Products/$count",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products",
+								"$count"
+							]
+						},
+						"description": "Note setting media type to JSON will return an error as it returns a single primitive."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products Inline Count",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/Products?$inlinecount=allpages",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products"
+							],
+							"query": [
+								{
+									"key": "$inlinecount",
+									"value": "allpages"
+								}
+							]
+						},
+						"description": "With this we can get the total count of objects within the response body."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/Products(0)",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products(0)"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product By Name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/Products?$filter=Name eq 'Bread'",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products"
+							],
+							"query": [
+								{
+									"key": "$filter",
+									"value": "Name eq 'Bread'"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Paginated Products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/Products?$skip=2&$top=2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products"
+							],
+							"query": [
+								{
+									"key": "$skip",
+									"value": "2"
+								},
+								{
+									"key": "$top",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Product with New Category & Supplier",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ID\": \"{{$randomInt}}\",\n\t\"Name\": \"ForestMachine\",\n\t\"Description\": \"Detailed replica of a real-life forest harvester comes with lots of realistic features, including working suspension, articulated steering and a multidirectional harvester head with a spinnable cutter blade.\",\n\t\"Price\": \"959\",\n\t\"Rating\": \"5\",\n\t\"ReleaseDate\": \"2019-01-01T00:00:00\",\n\t\"DiscontinuedDate\": \"2019-12-31T23:59:00\",\n\t\"Category\" : {\n\t\t\"ID\": \"400\",\n\t\t\"Name\": \"Lego Technic\"\n\t},\n\t\"Supplier\": {\n\t\t\"ID\": \"500\",\n\t\t\"Name\": \"Lego\",\n\t\t\"Address\": {\n\t\t\t\"Street\": \"Nordmarksvej 9\",\n\t\t\t\"City\": \"Billund\",\n\t\t\t\"ZipCode\": \"DK-7190\",\n\t\t\t\"Country\": \"Denmark\"\n\t\t}\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/Products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products"
+							]
+						},
+						"description": "**NOTE/BEWARE** This adds a new product with a random ID between 0 - 1000."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product, Category & Supplier with $expand",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/Products(0)?$expand=Category,Supplier",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products(0)"
+							],
+							"query": [
+								{
+									"key": "$expand",
+									"value": "Category,Supplier"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/Products()",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products()"
+							]
+						},
+						"description": "ID left empty on purpose. Add id e.g. Products(42080)."
+					},
+					"response": []
+				},
+				{
+					"name": "MERGE (Partial Update) Product",
+					"request": {
+						"method": "MERGE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Name\": \"Fresh Bread\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/Products(0)",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products(0)"
+							]
+						},
+						"description": "OData V2 uses a custom http method called MERGE"
+					},
+					"response": []
+				},
+				{
+					"name": "$batch Update Product, Category",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "96189596-07fa-4a31-9e61-b04d0c28e61e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "multipart/mixed; boundary=batch_36522ad7-fc75-4b56-8c71-56071383e77b",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "--batch_36522ad7-fc75-4b56-8c71-56071383e77b\r\nContent-Type: multipart/mixed; boundary=changeset_77162fcd-b8da-41ac-a9f8-9357efbbd621\r\n\r\n--changeset_77162fcd-b8da-41ac-a9f8-9357efbbd621\r\nContent-Type: application/http \r\nContent-Transfer-Encoding: binary\r\n\r\nMERGE /Products(0) HTTP/1.1\r\nhost: services.odata.org\r\nContent-Type: application/json\r\n\r\n{\r\n\t\"Name\": \"Bread\"\r\n}\r\n\r\n--changeset_77162fcd-b8da-41ac-a9f8-9357efbbd621\r\nContent-Type: application/http \r\nContent-Transfer-Encoding: binary\r\n\r\nPUT /Products(0)/$links/Category HTTP/1.1\r\nhost: services.odata.org \r\nContent-Type: application/json\r\n\r\n{\r\n\t\"uri\": \"{{baseUrl}}/Categories(0)\"\r\n}\r\n\r\n--changeset_77162fcd-b8da-41ac-a9f8-9357efbbd621--\r\n\r\n--batch_36522ad7-fc75-4b56-8c71-56071383e77b--",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/$batch",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"$batch"
+							]
+						},
+						"description": "$batch operations against this webservice are rolled back on errors.\nNote the -- at the end of the closing tag for batchset and changeset.\n\nAlso the content-type for this request must be: multipart/mixed; boundary=batch_36522ad7-fc75-4b56-8c71-56071383e77b. \nBeware that postman can override this sometimes."
+					},
+					"response": []
+				},
+				{
+					"name": "PUT (Replace Existing Entry - Update) Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Name\": \"Hot Bread\", \n\t\"Description\": \"Fresh bread straight out the oven\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/Products(0)",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products(0)"
+							]
+						},
+						"description": "**BEWARE** this will reset the value of everything that is not defined in the body except the ID. So for ID: 7 all other properties then defined will become null."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Category Links",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/Products(0)/$links/Category",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products(0)",
+								"$links",
+								"Category"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/Categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Name\": \"ForestMachine\",\n\t\"Description\": \"Detailed replica of a real-life forest harvester comes with lots of realistic features, including working suspension, articulated steering and a multidirectional harvester head with a spinnable cutter blade.\",\n\t\"Price\": \"959\",\n\t\"Rating\": \"4\",\n\t\"ReleaseDate\": \"2019-01-01T00:00:00\",\n\t\"DiscontinuedDate\": \"2019-12-31T23:59:00\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/Categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Categories"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Suppliers",
+			"item": [
+				{
+					"name": "Get Suppliers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/Suppliers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Suppliers"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Metadata",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/$metadata",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"$metadata"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "72ac09b6-1da6-438b-bb92-bae60bf18e6a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b743eeb0-65a9-42d3-ae51-7db53c08a62f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "5cb0d6e7-b3f0-4ed3-bed5-4acc87d6fcec",
+			"key": "baseUrl",
+			"value": "https://services.odata.org/(S(kpxrfujwquhskkbnwjcwe4r0))/V2/OData/OData.svc",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
