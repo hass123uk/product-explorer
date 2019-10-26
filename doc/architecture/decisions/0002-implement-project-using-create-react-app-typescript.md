@@ -12,7 +12,7 @@ The requirements of this task was to create a React application using Typescript
 
 ## Decision
 
-This project is based on the Typescript version os [create-react-app](https://github.com/facebook/create-react-app), a ready foundation for building React applications. 
+This project is based on the Typescript version os [create-react-app](https://github.com/facebook/create-react-app), a ready foundation for building React applications.
 
 ## Consequences
 
@@ -25,3 +25,6 @@ It includes:
 - Build script to bundle JS, CSS, and images for production
 
 The tradeoff is that we are confined to working in a specific way, so if we need more customization we are given the option to *eject* and customize it. 
+
+Using Typescript gives us static typing and autocomplete reducing the chances of runtime errors. 
+Some downsides is developer learning curve and added complexity, some dependencies do not have Typescript type definitions which requires consideration when including them into the project.
