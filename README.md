@@ -32,6 +32,10 @@ A React application that is built with the following:
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) with the Type Script flag provided.
 For the README related to the Create React app see the file README_CreateReactApp within this project.
 
+## UI Framework
+
+[Material-UI](https://material-ui.com) components, styling solution, icons, theme and html normalizer is used for the design of the application. 
+
 ## Architecture design decisions documentation
 
 Architecture Decision Records are used in order to document the architectural decisions that were made during the implementation of this platform. 
