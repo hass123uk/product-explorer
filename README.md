@@ -32,7 +32,7 @@ A React application that is built with the following:
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) with the Type Script flag provided.
 For the README related to the Create React app see the file README_CreateReactApp within this project.
 
-## UI Framework
+## UI framework
 
 [Material-UI](https://material-ui.com) components, styling solution, icons, theme and html normalizer is used for the design of the application. 
 
@@ -41,6 +41,12 @@ For the README related to the Create React app see the file README_CreateReactAp
 Architecture Decision Records are used in order to document the architectural decisions that were made during the implementation of this platform. 
 
 The records were generated using [adr-tools](https://github.com/npryce/adr-tools) and can be found in the directory  `doc/architecture/decisions`.
+
+## Postman collection
+
+In order to easily explore and learn how to use the [OData v2 (Read/Write)](https://services.odata.org/V2/(S(05rkbza5jphnonpura3112zu))/OData/OData.svc/) web service I created a postman collection of requests that document the usage of the REST API. The collection is exported as a JSON file and included within the source code of this project under the name `OData V2 (read-write).postman_collection.json`. 
+
+[Postman](https://www.getpostman.com/) can be used to import this collection.
 
 ## User stories
 
