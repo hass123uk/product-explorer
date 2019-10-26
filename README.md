@@ -32,6 +32,12 @@ A React application that is built with the following:
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) with the Type Script flag provided.
 For the README related to the Create React app see the file README_CreateReactApp within this project.
 
+## Architecture design decisions documentation
+
+Architecture Decision Records are used in order to document the architectural decisions that were made during the implementation of this platform. 
+
+The records were generated using [adr-tools](https://github.com/npryce/adr-tools) and can be found in the directory  `doc/architecture/decisions`.
+
 ## User stories
 
 - Required:
