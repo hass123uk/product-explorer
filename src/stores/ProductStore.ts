@@ -1,6 +1,6 @@
 import { types, applySnapshot, destroy, getParent } from 'mobx-state-tree';
 import { flow } from 'mobx';
-import { loadProducts, deleteProduct } from '../services/productHttpService'
+import { loadProducts, deleteProduct, loadProductCategory, updateProductCategory } from '../services/productHttpService'
 
 
 export const CategoryModel = types.model('CategoryModel', {
@@ -13,10 +13,25 @@ export const ProductModel = types.model('ProductModel', {
     name: types.string,
     price: types.number,
     category: types.maybe(CategoryModel)
-}).actions(self => {
+}).actions(self => ({
+    setCategory(category: any) {
+        self.category = category;
+    }
+})).actions(self => {
+    const loadCategory = flow(function* load() {
+        const category = yield loadProductCategory(self.id);
+        self.setCategory(category);
+    })
+    const updateCategory = flow(function* updateCategory(categoryId) {
+        yield updateProductCategory(self.id, categoryId);
+        loadCategory();
+    });
     return {
         remove() {
             getParent(self, 2).remove(self)
+        },
+        changeCategory(categoryId: number) {
+            updateCategory(categoryId)
         }
     }
 });
@@ -28,7 +43,6 @@ export const ProductStore = types.model('ProductStore', {
     markLoading(loading: boolean) {
         self.isLoading = loading
     }
-
 })).actions(self => ({
     loadData: flow(function* load() {
         try {

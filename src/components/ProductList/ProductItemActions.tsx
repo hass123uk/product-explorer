@@ -17,9 +17,9 @@ function ProductItemActions({ product }: any) {
     const handleClickEditDialogClose = () => {
         setOpenEditDialog(false);
     };
-    const handleClickEditDialogEdit = () => {
+    const handleClickEditDialogEdit = (selectedCategoryId: number) => {
         setOpenEditDialog(false);
-        console.log('Edit')
+        product.changeCategory(selectedCategoryId);
     }
 
     const handleClickOpenDeleteDialog = () => {
@@ -51,7 +51,7 @@ function ProductItemActions({ product }: any) {
                     <DeleteIcon />
                 </IconButton>
             </ListItemSecondaryAction>
-            <EditProductDialog open={openEditDialog} onEdit={handleClickEditDialogEdit} onClose={handleClickEditDialogClose} />
+            <EditProductDialog open={openEditDialog} onEdit={handleClickEditDialogEdit} onClose={handleClickEditDialogClose} product={product} />
             <DeleteProductDialog open={openDeleteDialog} onDelete={handleClickDeleteDialogDelete} onClose={handleClickDeleteDialogClose} />
         </React.Fragment>
     );
