@@ -50,3 +50,43 @@ export async function deleteProduct(productId: number) {
         throw Error(`deleteProduct rejected with status ${response.status}`);
     }
 }
+
+export async function loadProductCategory(productId: number) {
+    const selectQuery = '$select=ID,Name'
+    const url = `${productsBaseUrl}(${productId})/Category?${selectQuery}`;
+    const response = await fetch(url, {
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).catch(console.error);
+    if (response) {
+        if (response.ok) {
+            const jsonResponse = await response.json().catch(console.error);
+            console.log(jsonResponse)
+            return {
+                id: jsonResponse.d.ID,
+                name: jsonResponse.d.Name
+            }
+        } else {
+            throw Error(`loadProductCategory rejected with status ${response.status}`);
+        }
+    } else {
+        console.error('Empty response on loadProductCategory')
+    }
+}
+
+export async function updateProductCategory(productId: number, categoryId: number) {
+    const url = `${productsBaseUrl}(${productId})/$links/Category`;
+    const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'uri': `${oDataWebService}Categories(${categoryId})`
+        })
+    }).catch(console.error);
+    if (response && !response.ok) {
+        throw Error(`deleteProduct rejected with status ${response.status}`);
+    }
+}
