@@ -29,8 +29,15 @@ const useStyles = makeStyles((theme: Theme) =>
             textAlign: 'center',
             padding: theme.spacing(0, 0, 2, 0)
         },
+        dialogTitle: {
+            textAlign: 'center'
+        },
         buttonSelected: {
-            backgroundColor: theme.palette.primary.main
+            backgroundColor: theme.palette.grey[600],
+            "&:hover": {
+                //you want this to be the same as the backgroundColor above
+                backgroundColor: theme.palette.grey[600]
+        }
         }
     }),
 );
