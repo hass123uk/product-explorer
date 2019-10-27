@@ -42,6 +42,12 @@ Architecture Decision Records are used in order to document the architectural de
 
 The records were generated using [adr-tools](https://github.com/npryce/adr-tools) and can be found in the directory  `doc/architecture/decisions`.
 
+## OData v2 web service sample and Cross-Origin Resource Sharing
+
+The OData v2 web service sample does not define the http header: `Access-Control-Allow-Origin: *`.  
+[Cors Everywhere](https://cors-anywhere.herokuapp.com/) is used as a quick solution.  
+Read ADR #5 for details.
+
 ## Postman collection
 
 In order to easily explore and learn how to use the [OData v2 (Read/Write)](https://services.odata.org/V2/(S(05rkbza5jphnonpura3112zu))/OData/OData.svc/) web service I created a postman collection of requests that document the usage of the REST API. The collection is exported as a JSON file and included within the source code of this project under the name `OData V2 (read-write).postman_collection.json`. 
