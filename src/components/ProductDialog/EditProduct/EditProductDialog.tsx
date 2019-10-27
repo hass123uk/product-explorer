@@ -7,14 +7,30 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import { ProductInterface } from '../../../interfaces';
+
 import heroFactoryImg from '../../../static/hero_factory.png';
 import startWarsImg from '../../../static/star_wars.png';
 import legoMovieImg from '../../../static/the_lego_movie.png';
 
-interface Props {
+var categories = [
+    {
+        id: 0,
+        imgSrc: heroFactoryImg
+    }, {
+        id: 1,
+        imgSrc: startWarsImg
+    }, {
+        id: 2,
+        imgSrc: legoMovieImg
+    },
+];
+
+type EditProductDialogProps = {
     open: boolean;
     onClose: () => void;
-    onEdit: (categoryName: string) => void;
+    onEdit: (categoryId: number) => void;
+    product: ProductInterface;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -37,28 +53,26 @@ const useStyles = makeStyles((theme: Theme) =>
             "&:hover": {
                 //you want this to be the same as the backgroundColor above
                 backgroundColor: theme.palette.grey[600]
-        }
+            }
         }
     }),
 );
 
-export default function EditProductDialog(props: Props) {
+export default function EditProductDialog(props: EditProductDialogProps) {
     const classes = useStyles();
 
-    const [categoryName, setCategoryName] = React.useState('');
-
-    const handleCategorySelected = (categoryName: string) => {
-        setCategoryName(categoryName);
+    const [selectedCategoryId, setSelectedCategory] = React.useState(props.product.id);
+        
+    const handleCategorySelected = (categoryId: number) => {
+        setSelectedCategory(categoryId);
     };
 
     const handleCloseClick = () => {
         props.onClose();
-        setCategoryName('')
     }
 
     const handleEditClick = () => {
-        props.onEdit(categoryName);
-        setCategoryName('')
+        props.onEdit(selectedCategoryId);
     }
 
     return (
@@ -66,24 +80,23 @@ export default function EditProductDialog(props: Props) {
             fullWidth
             open={props.open}
             aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title">Edit Product</DialogTitle>
+            <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>Edit Product</DialogTitle>
             <DialogContent>
                 <form className={classes.form}>
                     <FormControl>
                         <FormLabel component="legend" className={classes.title}>Choose Category</FormLabel>
-                        <Button
-                            disableRipple
-                            onClick={() => handleCategorySelected('HeroFactory')}
-                            className={categoryName === 'HeroFactory' ? classes.buttonSelected : ''}
-                        >
-                            <img src={heroFactoryImg} alt="categoryImage" />
-                        </Button>
-                        <Button>
-                            <img src={startWarsImg} alt="categoryImage" />
-                        </Button>
-                        <Button>
-                            <img src={legoMovieImg} alt="categoryImage" />
-                        </Button>
+                        {
+                            categories.map(category => (
+                                <Button
+                                    key={category.id}
+                                    disableRipple
+                                    onClick={() => handleCategorySelected(category.id)}
+                                    className={selectedCategoryId === category.id ? classes.buttonSelected : ''}
+                                >
+                                    <img src={category.imgSrc} alt="categoryImage" />
+                                </Button>)
+                            )
+                        }
                     </FormControl>
                 </form>
             </DialogContent>
