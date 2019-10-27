@@ -59,7 +59,7 @@ MobX `when` and jest `done` callback is used to handel the Async nature of fetch
     - Test store models creation
     - Test product store actions
 
- I think the tests related to store model creation are more focused on testing the way MST works rather then the application, they perhaps could be refactored to leverage `useSnapshot` and `onSnapshot` to test the application state more generally.
+I think the tests related to store model creation are more focused on testing the way MST works rather then the application, they perhaps could be refactored to leverage `useSnapshot` and `onSnapshot` to test the application state more generally.  
 The tests related to the store actions on the other hand is a better basis for future tests to see how different actions trigger services and modify state within the application.
 
 ## Postman collection
