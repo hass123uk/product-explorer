@@ -1,6 +1,6 @@
 //TODO: Do not proxy all requests through another service.
 const corsProxyServer = 'https://cors-anywhere.herokuapp.com/';
-const oDataWebService = "https://services.odata.org/(S(cejbbsovyyufagzt5weoj0fq))/V2/OData/OData.svc/";
+const oDataWebService = "https://services.odata.org/(S(frfjuvdbs0cfo1ao2zjnd4do))/V2/OData/OData.svc/";
 const baseUrl = `${corsProxyServer}${oDataWebService}`
 const productsBaseUrl = `${baseUrl}Products`;
 
