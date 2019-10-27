@@ -1,8 +1,11 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
+import { observer } from 'mobx-react'
 import ProductItem from './ProductItem'
+import { ProductStore } from '../../stores/ProductStore'
 
+const productStore = ProductStore.create();
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -13,26 +16,22 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-function generate(element: React.ReactElement) {
-    return [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].map(value =>
-        React.cloneElement(element, {
-            key: value,
-        }),
-    );
-}
-
-export default function ProductList() {
+function ProductList() {
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
             <div>
                 <List>
-                    {generate(
-                        <ProductItem />
-                    )}
+                    {
+                        productStore.products.map((product) =>
+                            <ProductItem key={product.id} product={product} />
+                        )
+                    }
                 </List>
             </div>
         </div>
     );
 }
+
+export default observer(ProductList)
