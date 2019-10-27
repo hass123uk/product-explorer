@@ -7,9 +7,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import heroFactoryImg from './hero_factory.png';
-import startWarsImg from './star_wars.png';
-import legoMovieImg from './the_lego_movie.png';
+import heroFactoryImg from '../../../static/hero_factory.png';
+import startWarsImg from '../../../static/star_wars.png';
+import legoMovieImg from '../../../static/the_lego_movie.png';
 
 interface Props {
     open: boolean;
