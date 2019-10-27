@@ -5,8 +5,9 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditProductDialog from '../ProductDialog/EditProduct/EditProductDialog'
 import DeleteProductDialog from '../ProductDialog/DeleteProductDialog';
+import { observer } from 'mobx-react-lite';
 
-export default function ProductItemActions() {
+function ProductItemActions({ product }: any) {
     const [openEditDialog, setOpenEditDialog] = React.useState(false);
     const [openDeleteDialog, setOpenDeleteDialog] = React.useState(false);
 
@@ -29,7 +30,7 @@ export default function ProductItemActions() {
     };
     const handleClickDeleteDialogDelete = () => {
         setOpenDeleteDialog(false);
-        console.log('Delete')
+        product.remove()
     }
 
     return (
@@ -55,3 +56,5 @@ export default function ProductItemActions() {
         </React.Fragment>
     );
 }
+
+export default observer(ProductItemActions);

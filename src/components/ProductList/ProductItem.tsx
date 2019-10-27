@@ -25,7 +25,7 @@ function ProductItem(props: ProductItemProps) {
 
                 <Typography variant="h6">${props.product.price}</Typography>
             </ListItemText>
-            <ProductItemActions />
+            <ProductItemActions product={props.product} />
         </ListItem>
     );
 }
