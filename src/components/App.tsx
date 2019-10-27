@@ -1,7 +1,6 @@
 import React from 'react';
-import TopAppBar from './components/TopAppBar/TopAppBar';
-import ProductList from './components/ProductList/ProductList';
-
+import TopAppBar from './TopAppBar/TopAppBar';
+import ProductList from './ProductList/ProductList';
 
 const App: React.FC = () => {
   return(
