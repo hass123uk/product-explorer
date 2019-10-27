@@ -29,7 +29,7 @@ A React application that is built with the following:
 
 ## Generators/Accelerators
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) with the Type Script flag provided.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) with the Typescript flag provided.
 For the README related to the Create React app see the file README_CreateReactApp within this project.
 
 ## UI framework
@@ -48,6 +48,20 @@ The OData v2 web service sample does not define the http header: `Access-Control
 [Cors Everywhere](https://cors-anywhere.herokuapp.com/) is used as a quick solution.  
 Read ADR #5 for details.
 
+## Tests
+
+This project includes a small suite of tests. Jest manual module mocking is used for the product http service.  
+MobX `when` and jest `done` callback is used to handel the Async nature of fetching data within the `afterCreate` MST life cycle hook.
+
+- React components
+    - Create-react-app test to ensure the application renders without crashing.
+- Mobx State Tree
+    - Test store models creation
+    - Test product store actions
+
+ I think the tests related to store model creation are more focused on testing the way MST works rather then the application, they perhaps could be refactored to leverage `useSnapshot` and `onSnapshot` to test the application state more generally.
+The tests related to the store actions on the other hand is a better basis for future tests to see how different actions trigger services and modify state within the application.
+
 ## Postman collection
 
 In order to easily explore and learn how to use the [OData v2 (Read/Write)](https://services.odata.org/V2/(S(05rkbza5jphnonpura3112zu))/OData/OData.svc/) web service I created a postman collection of requests that document the usage of the REST API. The collection is exported as a JSON file and included within the source code of this project under the name `OData V2 (read-write).postman_collection.json`. 
@@ -56,12 +70,13 @@ In order to easily explore and learn how to use the [OData v2 (Read/Write)](http
 
 ## User stories
 
-- Required:
+- Completed:
     - As a user, I want to see a list of products and have the following displayed for each: ID, Name, Category and Price
     - As a user, I want to delete a single product after confirming the action
-    - As a user I want to edit a single product after previewing the changes and modify the following: Name, Description, Release date, Discontinued date, Price and Category; Supplier is always set to Lego
+    - As a user I want to edit a product category
+- Todo:
     - As a user I want to add a new product after previewing the changes providing the following: Name, Description, Release date, Discontinued date, Price and Category; Supplier is always set to Lego
-- Optional/Bonus:
+    - As a user I want to edit a single product after previewing the changes and modify the following: Name, Description, Release date, Discontinued date, Price and Category; Supplier is always set to Lego
     - As a user I want to see an indicator showing 'New' on a product that I recently added.
     - As a user I want to see a details page about a single product showing: Name, Description, Release date, Discontinued date, Price and Category
     - As a user I want the list of products to support partial loading and pagination
