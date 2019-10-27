@@ -507,6 +507,111 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "Lego products",
+			"item": [
+				{
+					"name": "Create HERO factory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ID\": \"0\",\n\t\"Name\": \"Hero Factory Stormer\",\n\t\"Description\": \"\",\n\t\"Price\": \"80\",\n\t\"Rating\": \"5\",\n\t\"ReleaseDate\": \"2019-01-01T00:00:00\",\n\t\"DiscontinuedDate\": \"2019-12-31T23:59:00\",\n\t\"Category\" : {\n\t\t\"ID\": \"0\",\n\t\t\"Name\": \"Lego Hero Factory\"\n\t},\n\t\"Supplier\": {\n\t\t\"ID\": \"500\",\n\t\t\"Name\": \"Lego\",\n\t\t\"Address\": {\n\t\t\t\"Street\": \"Nordmarksvej 9\",\n\t\t\t\"City\": \"Billund\",\n\t\t\t\"ZipCode\": \"DK-7190\",\n\t\t\t\"Country\": \"Denmark\"\n\t\t}\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/Products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products"
+							]
+						},
+						"description": "**NOTE/BEWARE** This adds a new product with a random ID between 0 - 1000."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Start wars",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ID\": \"1\",\n\t\"Name\": \"Imperial Star Destroyer™\",\n\t\"Description\": \"\",\n\t\"Price\": \"780.99\",\n\t\"Rating\": \"5\",\n\t\"ReleaseDate\": \"2019-01-01T00:00:00\",\n\t\"DiscontinuedDate\": \"2019-12-31T23:59:00\",\n\t\"Category\" : {\n\t\t\"ID\": \"1\",\n\t\t\"Name\": \"Lego Star Wars\"\n\t},\n\t\"Supplier\": {\n\t\t\"ID\": \"500\",\n\t\t\"Name\": \"Lego\",\n\t\t\"Address\": {\n\t\t\t\"Street\": \"Nordmarksvej 9\",\n\t\t\t\"City\": \"Billund\",\n\t\t\t\"ZipCode\": \"DK-7190\",\n\t\t\t\"Country\": \"Denmark\"\n\t\t}\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/Products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products"
+							]
+						},
+						"description": "**NOTE/BEWARE** This adds a new product with a random ID between 0 - 1000."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Start wars Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ID\": \"2\",\n\t\"Name\": \"THE LEGO® MOVIE 2™ Emmet Alarm Clock\",\n\t\"Description\": \"\",\n\t\"Price\": \"30\",\n\t\"Rating\": \"5\",\n\t\"ReleaseDate\": \"2019-01-01T00:00:00\",\n\t\"DiscontinuedDate\": \"2019-12-31T23:59:00\",\n\t\"Category\" : {\n\t\t\"ID\": \"2\",\n\t\t\"Name\": \"THE LEGO® MOVIE 2™\"\n\t},\n\t\"Supplier\": {\n\t\t\"ID\": \"500\",\n\t\t\"Name\": \"Lego\",\n\t\t\"Address\": {\n\t\t\t\"Street\": \"Nordmarksvej 9\",\n\t\t\t\"City\": \"Billund\",\n\t\t\t\"ZipCode\": \"DK-7190\",\n\t\t\t\"Country\": \"Denmark\"\n\t\t}\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/Products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"Products"
+							]
+						},
+						"description": "**NOTE/BEWARE** This adds a new product with a random ID between 0 - 1000."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Metadata",
 			"request": {
 				"method": "GET",
@@ -548,9 +653,9 @@
 	],
 	"variable": [
 		{
-			"id": "5cb0d6e7-b3f0-4ed3-bed5-4acc87d6fcec",
+			"id": "915b0f98-663f-4b71-a25b-67002ac7d707",
 			"key": "baseUrl",
-			"value": "https://services.odata.org/(S(kpxrfujwquhskkbnwjcwe4r0))/V2/OData/OData.svc",
+			"value": "https://services.odata.org/(S(frfjuvdbs0cfo1ao2zjnd4do))/V2/OData/OData.svc/",
 			"type": "string"
 		}
 	],
