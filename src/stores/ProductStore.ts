@@ -1,5 +1,5 @@
 import { types, applySnapshot, destroy, getParent } from 'mobx-state-tree';
-import { flow } from 'mobx';
+import { flow } from 'mobx-state-tree';
 import { loadProducts, deleteProduct, loadProductCategory, updateProductCategory } from '../services/productHttpService'
 
 
