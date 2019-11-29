@@ -87,6 +87,6 @@ export async function updateProductCategory(productId: number, categoryId: numbe
         })
     }).catch(console.error);
     if (response && !response.ok) {
-        throw Error(`deleteProduct rejected with status ${response.status}`);
+        throw Error(`updateProductCategory rejected with status ${response.status}`);
     }
 }
